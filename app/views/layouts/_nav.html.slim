@@ -2,8 +2,9 @@ nav.navbar.navbar-light.bg-light
   = link_to 'QNA', root_path, class: 'navbar-brand'
   span.navbar-text
     - if user_signed_in?
+      = current_user.nickname
       = link_to 'Ask your question', new_question_path, class: 'btn'
-      = link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn'
+      = button_to 'Sign out', destroy_user_session_path, class: 'btn btn-secondary', method: :delete
     - else
       = link_to 'Sign in', new_user_session_path, class: 'btn'
       = link_to 'Sign up', new_user_registration_path, class: 'btn'

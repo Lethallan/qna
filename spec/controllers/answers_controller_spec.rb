@@ -3,6 +3,9 @@ require 'rails_helper'
 RSpec.describe AnswersController, type: :controller do
   let(:question) { create(:question) }
   let(:answer) { create(:answer, question: question) }
+  let(:user) { create(:user) }
+
+  before { login(user) }
 
   describe 'GET #show' do
     before { get :show, params: { id: answer } }
@@ -49,6 +52,10 @@ RSpec.describe AnswersController, type: :controller do
       it 'redirects to show' do
         post :create, params: { question_id: question, answer: attributes_for(:answer) }
         expect(response).to redirect_to assigns(:answer)
+      end
+
+      it 'assigns an author to the answer' do
+        expect { post :create, params: { answer: attributes_for(:answer), question_id: question } }.to change(user.answers, :count).by(1)
       end
     end
 

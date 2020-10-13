@@ -1,7 +1,8 @@
 FactoryBot.define do
   factory :answer do
+    question { create(:question) }
     body { "The best answer ever" }
-    user { User.first }
+    user { create(:user) }
 
     trait :wrong do
       body { nil }

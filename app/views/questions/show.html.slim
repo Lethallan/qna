@@ -3,4 +3,21 @@
     .card.border-default
       .card-body
         h1= @question.title
+        h5= @question.user.nickname
         p= @question.body
+        - if current_user == @question.user
+          p = button_to 'Delete this question', question_path(@question),
+                                                method: :delete, data: { confirm: 'Are you sure?' },
+                                                class: 'btn btn-secondary'
+    .card.border-default
+      .card-body
+        - if user_signed_in? && (@question.user != current_user)
+          b= 'Your answer'
+          = render 'answers/form'
+    .card.border-default
+      .card-body
+        = render @question.answers
+      div
+        .row.justify-content-center.mt-1
+          = link_to 'Back', root_path
+          div

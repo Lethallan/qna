@@ -1,3 +1,4 @@
 tr
   td scope="row" = question.title
+  td scope="row" = link_to truncate(question.body, length: 15), question_path(question)
   td scope="row" = question.user.nickname

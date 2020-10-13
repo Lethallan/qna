@@ -1,0 +1,14 @@
+.form-group
+  = form_with model: @question, local: true do |f|
+    = render 'shared/errors', resource: @question
+    = f.hidden_field :user_id, :value => current_user.id
+    p
+      = f.label :title
+      br/
+      = f.text_field :title, id: :question_title, class: 'form-control'
+    p
+      = f.label :body
+      br/
+      = f.text_field :body, id: :question_body, class: 'form-control'
+    p
+      = f.submit 'Submit', class: 'btn btn-primary'

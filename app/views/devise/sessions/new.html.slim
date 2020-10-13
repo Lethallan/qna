@@ -1,0 +1,23 @@
+.row.justify-content-center.mt-3
+  .col.col-md-2
+    h2 style=("text-align: center") Log in
+    .card.border-primary.text-center
+      .card-body
+        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          .form-group
+            p
+              = f.label :email
+              br/
+              = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control'
+            p
+              = f.label :password
+              br/
+              = f.password_field :password, autocomplete: "current-password", class: 'form-control'
+            - if devise_mapping.rememberable?
+              .form-check
+                = f.label :remember_me, class: 'form-ckeck-label' do
+                  = f.check_box :remember_me, class: 'form-check-input'
+                  | Remember me
+            .actions
+              = f.submit "Log in", class: 'btn btn-primary'
+        = render "devise/shared/links"

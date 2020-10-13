@@ -1,8 +1,12 @@
 = render 'shared/errors', resource: @question
 
-= form_with model: @question do |f|
-  = f.label :title
-  = f.text_field :title
-  = f.label :body
-  = f.text_area :body
-  = f.submit 'Ask'
+.row.justify-content-center.mt-5
+  .col.col-md-3
+    h1 Just ask
+    .card.border-primary
+      .card-body
+        = render 'form'
+      div
+        .row.justify-content-center.mt-1
+          = link_to 'Back', root_path
+          div

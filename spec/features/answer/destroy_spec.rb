@@ -38,5 +38,4 @@ feature 'User can delete answers', %q{
 
     expect(page).to_not have_selector '.deleteAnswer'
   end
-
 end

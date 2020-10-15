@@ -5,6 +5,7 @@
       br/
       h6 style=("text-align: left") = answer.user.nickname
       - if current_user == answer.user
-          p style=("text-align: center") = button_to 'Delete', answer_path(answer),
-                                                              method: :delete, data: { confirm: 'Are you sure?' },
-                                                              class: 'btn btn-secondary'
+          div class='deleteAnswer'
+            p style=("text-align: center") = button_to 'Delete', answer_path(answer),
+                                                                method: :delete, data: { confirm: 'Are you sure?' },
+                                                                class: 'btn btn-secondary'

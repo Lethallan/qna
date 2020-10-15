@@ -21,5 +21,4 @@ feature 'Any user can see the list of question', %q{
 
     questions.each { |question| expect(page).to have_content question.title }
   end
-
 end

@@ -21,6 +21,12 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'slim-rails'
 
+gem 'devise'
+
+gem 'jquery-rails'
+gem 'bootstrap', '~> 4.0'
+gem 'bootstrap-sass'
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-byebug'
@@ -41,4 +47,5 @@ group :test do
   gem 'webdrivers'
   gem 'shoulda-matchers'
   gem 'rails-controller-testing'
+  gem 'launchy'
 end

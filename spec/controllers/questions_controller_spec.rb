@@ -2,6 +2,9 @@ require 'rails_helper'
 
 RSpec.describe QuestionsController, type: :controller do
   let(:question) { create(:question) }
+  let(:user) { create(:user) }
+
+  before { login(user) }
 
   describe 'GET #index' do
     let(:questions) { create_list(:question, 3) }
@@ -29,6 +32,7 @@ RSpec.describe QuestionsController, type: :controller do
   end
 
   describe 'GET #new' do
+    before { login(user) }
     before { get :new }
 
     it 'assigns a new question to @question' do
@@ -41,6 +45,7 @@ RSpec.describe QuestionsController, type: :controller do
   end
 
   describe 'GET #edit' do
+    before { login(user) }
     before { get :edit, params: { id: question } }
 
     it 'assigns the requested question to @question' do
@@ -61,6 +66,10 @@ RSpec.describe QuestionsController, type: :controller do
       it 'redirects to show' do
         post :create, params: { question: attributes_for(:question) }
         expect(response).to redirect_to assigns(:question)
+      end
+
+      it 'assigns an author to the question' do
+        expect { post :create, params: { question: attributes_for(:question) } }.to change(user.questions, :count).by(1)
       end
     end
 
@@ -114,6 +123,8 @@ RSpec.describe QuestionsController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
+    before { login(user) }
+
     let!(:question) { create(:question) }
 
     it 'deletes the question' do

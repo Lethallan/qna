@@ -1,0 +1,18 @@
+.row.justify-content-center.mt-3
+  .col.col-md-7
+    .card.border-default
+      .card-body
+        h1 style=("text-align: center") All Questions
+
+        - if user_signed_in?
+          h5 style=("text-align: center") = link_to 'Ask a question', new_question_path
+        - else
+          h5 style=("text-align: center") Sign in to ask a question!
+
+        table.table.table-striped
+          thead.thead-dark
+            tr
+              th scope="col" Question title
+              th scope="col" Description
+              th scope="col" Author
+              = render @questions

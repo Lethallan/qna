@@ -1,0 +1,24 @@
+.row.justify-content-center.mt-3
+  .col.col-md-7
+    .card.border-default
+      .card-body
+        h1= @question.title
+        h5= @question.user.nickname
+        p= @question.body
+        - if current_user == @question.user
+          div class='deleteQuestion'
+            p = button_to 'Delete this question', question_path(@question),
+                                                  method: :delete, data: { confirm: 'Are you sure?' },
+                                                  class: 'btn btn-secondary'
+    .card.border-default
+      .card-body
+        - if user_signed_in?
+          b= 'Your answer'
+          = render 'answers/form'
+    .card.border-default
+      .card-body
+        = render @question.answers
+      div
+        .row.justify-content-center.mt-1
+          = link_to 'Back', root_path
+          div

@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 feature 'User can edit answers', %q{
-  In order to remove unneeded information
+  In order to correct possible mistakes
   As an authenticated user and answers's author
-  I'd like to be able to delete my own answers
+  I'd like to be able to edit my own answers
 } do
 
   given(:users) { create_list(:user, 2) }

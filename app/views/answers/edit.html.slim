@@ -1,0 +1,6 @@
+.card.border-default
+  .card-body
+    h5= @answer.question.title
+    = @answer.question.body
+    = render 'answers/form'
+    = link_to 'Back', @answer.question

@@ -1,0 +1,9 @@
+= form_with model: [@answer],
+  url: answer_update_inline_path(@answer),
+  local: true,
+  method: :patch,
+  class: 'form-inline',
+  html: { style: 'display: none' },
+  data: { answer_id: @answer.id } do |form|
+  = form.text_field :body, class: 'form-control mr-2'
+  = form.submit 'Submit', class: 'btn btn-primary'

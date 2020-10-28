@@ -33,45 +33,55 @@ RSpec.describe AnswersController, type: :controller do
     end
   end
 
-  # describe 'PATCH #update' do
-  #   let!(:users) { create_list(:user, 2) }
-  #   let!(:answer) { create(:answer, question_id: question, user_id: user) }
+  describe 'GET #edit' do
+    let!(:answer) { create(:answer) }
+    before { get :edit, params: { id: answer } }
 
-  #   before { log_in(users.first) }
+    it 'assigns the requested answer to @answer' do
+      expect(assigns(:answer)).to eq answer
+    end
 
-  #   context 'with valid attributes' do
-  #     it 'assigns the requested answer to @answer' do
-  #       patch :update, params: { id: answer, answer: attributes_for(:answer) }
-  #       expect(assigns(:answer)).to eq answer
-  #     end
+    it 'renders edit view' do
+      expect(response).to render_template :edit
+    end
+  end
 
-  #     it 'changes answer attributes' do
-  #       patch :update, params: { id: answer, answer: { body: 'even greater answer' } }
-  #       answer.reload
+  describe 'PATCH #update' do
+    let!(:answer) { create(:answer) }
 
-  #       expect(answer.body).to eq 'even greater answer'
-  #     end
+    context 'with valid attributes' do
+      it 'assigns the requested answer to @answer' do
+        patch :update, params: { id: answer, answer: attributes_for(:answer) }
+        expect(assigns(:answer)).to eq answer
+      end
 
-  #     it "redirects to this answer's question's show view" do
-  #       post :create, params: { answer: attributes_for(:answer), question_id: question }
-  #       expect(response).to redirect_to question_path(question)
-  #     end
-  #   end
+      it 'changes answer attributes' do
+        patch :update, params: { id: answer, answer: { body: 'even greater answer' } }
+        answer.reload
 
-  #   context 'with wrong attributes' do
-  #     before { patch :update, params: { id: answer, answer: attributes_for(:answer, :wrong) } }
+        expect(answer.body).to eq 'even greater answer'
+      end
 
-  #     it 'does not change the answer' do
-  #       answer.reload
+      it 'redirects to question' do
+        patch :update, params: { id: answer, answer: attributes_for(:answer) }
+        expect(response).to redirect_to answer.question
+      end
+    end
 
-  #       expect(answer.body).to eq 'The best answer ever'
-  #     end
+    context 'with wrong attributes' do
+      before { patch :update, params: { id: answer, answer: attributes_for(:answer, :wrong) } }
 
-  #     it 'renders edit view again' do
-  #       expect(response).to render_template :edit
-  #     end
-  #   end
-  # end
+      it 'does not change the answer' do
+        answer.reload
+
+        expect(answer.body).to eq 'The best answer ever'
+      end
+
+      it 'renders edit view again' do
+        expect(response).to render_template :edit
+      end
+    end
+  end
 
   describe 'DELETE #destroy' do
     let!(:users) { create_list(:user, 2) }

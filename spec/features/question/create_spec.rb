@@ -30,6 +30,16 @@ feature 'User can create questions', %q{
 
       expect(page).to have_content "Title can't be blank"
     end
+
+    scenario 'asks a question with a file' do
+      fill_in 'Title', with: 'Question title'
+      fill_in 'Body', with: 'Bla bla bla'
+
+      attach_file 'File', "#{Rails.root}/spec/rails_helper.rb"
+      click_on 'Submit'
+
+      expect(page).to have_link 'rails_helper.rb'
+    end
   end
 
   scenario 'Unauthenticated user tries to ask a question' do

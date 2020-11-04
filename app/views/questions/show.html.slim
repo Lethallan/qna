@@ -5,6 +5,8 @@
         h1= @question.title
         h5= @question.user.nickname
         p= @question.body
+        - if @question.file.attached?
+          p= link_to @question.file.filename.to_s, url_for(@question.file)
         - if current_user == @question.user
           div class='editQuestion'
             p = link_to 'Edit', edit_question_path(@question)

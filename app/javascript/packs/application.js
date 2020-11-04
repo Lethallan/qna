@@ -9,6 +9,7 @@ require("@rails/activestorage").start()
 require("channels")
 require("jquery2")
 require("jquery_ujs")
+require("utilities/form_inline")
 
 import "bootstrap";
 import "../stylesheets/application"  // <- Add this line

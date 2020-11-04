@@ -6,6 +6,8 @@
         h5= @question.user.nickname
         p= @question.body
         - if current_user == @question.user
+          div class='editQuestion'
+            p = link_to 'Edit', edit_question_path(@question)
           div class='deleteQuestion'
             p = button_to 'Delete this question', question_path(@question),
                                                   method: :delete, data: { confirm: 'Are you sure?' },

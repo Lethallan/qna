@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   end
 
   resources :questions do
-    resources :answers, shallow: true, except: %i[index show]
+    resources :answers, shallow: true, except: %i[index show] do
+      patch :update_inline
+    end
   end
 end

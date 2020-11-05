@@ -30,6 +30,16 @@ feature 'User can create answers', %q{
 
       expect(page).to have_content "Body can't be blank"
     end
+
+    scenario 'answers with files' do
+      fill_in 'answer_body', with: 'Bla bla bla'
+
+      attach_file 'File', ["#{Rails.root}/spec/controllers/questions_controller_spec.rb", "#{Rails.root}/spec/controllers/answers_controller_spec.rb"]
+      click_on 'Submit'
+
+      expect(page).to have_link 'questions_controller_spec.rb'
+      expect(page).to have_link 'answers_controller_spec.rb'
+    end
   end
 
   scenario 'Unauthenticated user tries to answer a question' do

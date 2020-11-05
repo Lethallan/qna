@@ -31,7 +31,7 @@ feature 'User can create questions', %q{
       expect(page).to have_content "Title can't be blank"
     end
 
-    scenario 'asks a question with a file' do
+    scenario 'asks a question with files' do
       fill_in 'Title', with: 'Question title'
       fill_in 'Body', with: 'Bla bla bla'
 

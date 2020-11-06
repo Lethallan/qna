@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'files/destroy'
   # get 'sessions/new'
   # get 'sessions/create'
   # get 'sessions/destroy'
@@ -15,4 +16,6 @@ Rails.application.routes.draw do
       patch :update_inline
     end
   end
+
+  resources :files, only: :destroy
 end

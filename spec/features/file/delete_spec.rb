@@ -16,12 +16,13 @@ feature 'Only author can delete files from question', %q{
   scenario 'Not authenticated user tried delete file' do
     visit question_path(question)
 
-    expect(page).to_not have_selector '.deleteFileQuestion'
+    expect(page).to_not have_link 'Edit'
   end
 
   scenario 'Author delete file' do
     sign_in(users.first)
     visit question_path(question)
+    click_on 'Edit'
     click_on 'Delete file'
 
     expect(page).to_not have_content 'rails_helper.rb'
@@ -31,6 +32,6 @@ feature 'Only author can delete files from question', %q{
     sign_in(users.last)
     visit question_path(question)
 
-    expect(page).to_not have_selector '.deleteFileQuestion'
+    expect(page).to_not have_link 'Edit'
   end
 end

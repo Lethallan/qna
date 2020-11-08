@@ -6,14 +6,6 @@
         - answer.files.each do |file|
           div id=file.id class='file'
             p= link_to file.filename.to_s, url_for(file)
-            - if current_user == @answer.user
-              div class='deleteFileAnswer'
-                = button_to 'Delete file',
-                          file_path(file),
-                          method: :delete,
-                          remote: true,
-                          class: 'btn'
-      br/
       h6 style=("text-align: left") = answer.user.nickname
       - if current_user == answer.user
           div class='editAnswer'

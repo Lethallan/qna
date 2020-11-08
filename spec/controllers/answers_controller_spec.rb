@@ -85,7 +85,7 @@ RSpec.describe AnswersController, type: :controller do
 
   describe 'DELETE #destroy' do
     let!(:users) { create_list(:user, 2) }
-    let!(:answer) { create(:answer, question: question, user_id: users.first.id ) }
+    let!(:answer) { create(:answer, question: question, user_id: users.first.id) }
 
     context 'user is author' do
       before { sign_in(users.first) }

@@ -2,7 +2,10 @@
   .card.border-primary
     .card-body
       = answer.body
-      br/
+      - if answer.files.attached?
+        - answer.files.each do |file|
+          div id=file.id class='file'
+            p= link_to file.filename.to_s, url_for(file)
       h6 style=("text-align: left") = answer.user.nickname
       - if current_user == answer.user
           div class='editAnswer'

@@ -2,5 +2,15 @@
   .card-body
     h5= @answer.question.title
     = @answer.question.body
+    - if @answer.files.attached?
+        - @answer.files.each do |file|
+          div id=file.id class='file'
+            p= link_to file.filename.to_s, url_for(file)
+          div class='deleteFileAnswer'
+                = button_to 'Delete file',
+                          file_path(file),
+                          method: :delete,
+                          remote: true,
+                          class: 'btn'
     = render 'answers/form'
     = link_to 'Back', @answer.question

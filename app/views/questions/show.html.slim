@@ -5,11 +5,14 @@
         h1= @question.title
         h5= @question.user.nickname
         p= @question.body
-        - if @question.file.attached?
-          p= link_to @question.file.filename.to_s, url_for(@question.file)
+        - if @question.files.attached?
+          - @question.files.each do |file|
+            div id=file.id class='file'
+              p= link_to file.filename.to_s, url_for(file)
         - if current_user == @question.user
           div class='editQuestion'
-            p = link_to 'Edit', edit_question_path(@question)
+            .row.justify-content-center.mt-3
+              p = link_to 'Edit', edit_question_path(@question)
           div class='deleteQuestion'
             p = button_to 'Delete this question', question_path(@question),
                                                   method: :delete, data: { confirm: 'Are you sure?' },

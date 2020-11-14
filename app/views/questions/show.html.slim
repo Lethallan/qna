@@ -23,7 +23,7 @@
             - unless @question.links.empty?
               p Links:
               - @question.links.each do |link|
-                  li= link_to link.name, link.url
+                li= link_to link.name, link.url
 
     div class='allAnswers'
       .card.border-default

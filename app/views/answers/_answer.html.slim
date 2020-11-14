@@ -6,6 +6,12 @@
         - answer.files.each do |file|
           div id=file.id class='file'
             p= link_to file.filename.to_s, url_for(file)
+      div class='answerLinks'
+        ul
+          - unless @answer.links.empty?
+            p Links:
+            - @answer.links.each do |link|
+              li= link_to link.name, link.url
       h6 style=("text-align: left") = answer.user.nickname
       - if current_user == answer.user
           div class='editAnswer'

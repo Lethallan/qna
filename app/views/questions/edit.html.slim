@@ -12,6 +12,16 @@
                     method: :delete,
                     remote: true,
                     class: 'btn'
+        div class='links'
+          - unless @question.links.empty?
+            p Links:
+            - @question.links.each do |link|
+              li= link_to link.name, link.url
+              = button_to 'Delete link',
+                        link_path(link),
+                        method: :delete,
+                        remote: true,
+                        class: 'btn'
     = render 'questions/form'
 
     = link_to 'Back', @question

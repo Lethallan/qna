@@ -18,7 +18,7 @@ feature 'User can create questions', %q{
 
     scenario 'asks a question' do
       fill_in 'Title', with: 'Question title'
-      fill_in 'Body', with: 'Bla bla bla'
+      fill_in 'Text', with: 'Bla bla bla'
       click_on 'Submit'
 
       expect(page).to have_content 'Question title'
@@ -33,7 +33,7 @@ feature 'User can create questions', %q{
 
     scenario 'asks a question with files' do
       fill_in 'Title', with: 'Question title'
-      fill_in 'Body', with: 'Bla bla bla'
+      fill_in 'Text', with: 'Bla bla bla'
 
       attach_file 'File', ["#{Rails.root}/spec/rails_helper.rb", "#{Rails.root}/spec/spec_helper.rb"]
       click_on 'Submit'

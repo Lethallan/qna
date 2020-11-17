@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'links/destroy'
   get 'files/destroy'
   # get 'sessions/new'
   # get 'sessions/create'
@@ -18,4 +19,5 @@ Rails.application.routes.draw do
   end
 
   resources :files, only: :destroy
+  resources :links, only: :destroy
 end
